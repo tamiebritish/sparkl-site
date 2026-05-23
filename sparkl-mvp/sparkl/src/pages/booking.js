@@ -160,7 +160,7 @@ function renderStep1() {
         <label>Service type</label>
         <select name="service_type">
           <option value="">Select a service…</option>
-          ${(_cleaner.services || []).map(s => `<option value="${s}">${escapeHtml(s)}</option>`).join('')}
+          ${(_cleaner.services || []).map(s => `<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`).join('')}
         </select>
       </div>
       <div class="form-row">
@@ -223,7 +223,7 @@ function renderStep2() {
         <div><div style="color:var(--bark-light);margin-bottom:2px">Service</div><div style="font-weight:500">${escapeHtml(_formData.serviceType)}</div></div>
         <div><div style="color:var(--bark-light);margin-bottom:2px">Date &amp; time</div><div style="font-weight:500">${escapeHtml(_formData.preferredDate)} · ${escapeHtml(_formData.preferredTime)}</div></div>
         <div><div style="color:var(--bark-light);margin-bottom:2px">Home size</div><div style="font-weight:500">${escapeHtml(_formData.homeSize)}</div></div>
-        <div><div style="color:var(--bark-light);margin-bottom:2px">Rate</div><div style="font-weight:500">$${_cleaner.hourly_rate}/hr</div></div>
+        <div><div style="color:var(--bark-light);margin-bottom:2px">Rate</div><div style="font-weight:500">$${escapeHtml(_cleaner.hourly_rate)}/hr</div></div>
       </div>
       ${_formData.notes ? `<div style="margin-top:12px;font-size:13px;color:var(--bark-mid);border-top:1px solid var(--border);padding-top:12px">"${escapeHtml(_formData.notes)}"</div>` : ''}
     </div>

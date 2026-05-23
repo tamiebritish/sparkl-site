@@ -59,11 +59,11 @@ function renderProfile(cleaner, reviews) {
   setHtml('profStats', `
     <div class="stat"><div class="stat-num">${cleaner.review_count ?? 0}</div><div class="stat-lbl">Reviews</div></div>
     <div class="stat"><div class="stat-num">${cleaner.rating_average?.toFixed(2) ?? '—'}</div><div class="stat-lbl">Avg rating</div></div>
-    <div class="stat"><div class="stat-num">$${cleaner.hourly_rate}</div><div class="stat-lbl">per hour</div></div>
+    <div class="stat"><div class="stat-num">$${escapeHtml(cleaner.hourly_rate)}</div><div class="stat-lbl">per hour</div></div>
   `)
 
   // Booking panel price
-  setHtml('profPriceBig', `$${cleaner.hourly_rate}<span>/hr starting from</span>`)
+  setHtml('profPriceBig', `$${escapeHtml(cleaner.hourly_rate)}<span>/hr starting from</span>`)
 
   // Bio
   setText('profBio', cleaner.bio)

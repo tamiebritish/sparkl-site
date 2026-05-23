@@ -14,14 +14,14 @@ export function renderCleanerCard(cleaner) {
 
   const tags = (cleaner.services || [])
     .slice(0, 3)
-    .map(t => `<span class="tag">${t}</span>`)
+    .map(t => `<span class="tag">${escapeHtml(t)}</span>`)
     .join('')
 
   const emoji = cleaner.emoji_placeholder || '🧹'
   const bg = cleaner.avatar_bg_color || '#E8F2EC'
 
   return `
-    <div class="cleaner-card" data-id="${cleaner.id}" data-slug="${cleaner.slug || cleaner.id}">
+    <div class="cleaner-card" data-id="${escapeHtml(cleaner.id)}" data-slug="${escapeHtml(cleaner.slug || cleaner.id)}">
       <div class="card-image" style="background:${bg}">
         <div class="avatar-bg">${emoji}</div>
         <div class="card-badge">${topBadge}</div>
@@ -39,7 +39,7 @@ export function renderCleanerCard(cleaner) {
         <div class="card-sub">${escapeHtml(cleaner.neighbourhood)} · Hamilton</div>
         <div class="card-tags">${tags}</div>
         <div class="card-footer">
-          <div class="card-price">$${cleaner.hourly_rate}<span>/hr</span></div>
+          <div class="card-price">$${escapeHtml(cleaner.hourly_rate)}<span>/hr</span></div>
           <button class="card-btn view-profile-btn">View profile</button>
         </div>
       </div>
@@ -87,7 +87,7 @@ export function renderServiceRows(services = [], hourlyRate) {
       return `
         <div class="service-row">
           <span class="service-name">${escapeHtml(s)}</span>
-          <span class="service-price">${price}</span>
+          <span class="service-price">${escapeHtml(price)}</span>
         </div>
       `
     })
@@ -131,7 +131,7 @@ export function renderBookingStatusPill(status) {
     cancelled: ['status-declined', 'Cancelled'],
   }
   const [cls, label] = map[status] || ['status-complete', status]
-  return `<span class="status-pill ${cls}">${label}</span>`
+  return `<span class="status-pill ${cls}">${escapeHtml(label)}</span>`
 }
 
 export function renderBookingRow(booking) {

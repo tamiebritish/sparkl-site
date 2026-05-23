@@ -124,7 +124,7 @@ export function showFormErrors(formEl, errors) {
   }
   errorBox.innerHTML = `
     <ul style="margin:0;padding-left:1.25rem">
-      ${errors.map(e => `<li>${e}</li>`).join('')}
+      ${errors.map(e => `<li>${escapeHtml(e)}</li>`).join('')}
     </ul>
   `
   errorBox.scrollIntoView({ behavior: 'smooth', block: 'center' })
@@ -141,6 +141,15 @@ export function clearFormErrors(formEl) {
 
 function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())
+}
+
+function escapeHtml(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;')
 }
 
 /**
