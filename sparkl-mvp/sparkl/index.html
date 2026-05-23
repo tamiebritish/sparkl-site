@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="/src/css/pages.css" />
 
   <!-- Favicon placeholder -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='42' fill='%2358685D'/></svg>" />
 </head>
 <body>
 
@@ -86,17 +86,17 @@
     <div class="feature-strip">
       <div class="feature-inner">
         <div class="feat-item"><div class="feat-icon">✓</div><strong>Curated cleaners only</strong>Application-only, not open to all</div>
-        <div class="feat-item"><div class="feat-icon">🔒</div><strong>Background checks</strong>All cleaners vetted before listing</div>
+        <div class="feat-item"><div class="feat-icon"></div><strong>Background checks</strong>All cleaners vetted before listing</div>
         <div class="feat-item"><div class="feat-icon">🌴</div><strong>Culturally aligned</strong>Caribbean &amp; familiar cleaning styles</div>
         <div class="feat-item"><div class="feat-icon">♻</div><strong>Repeat-first model</strong>Same-cleaner convenience built in</div>
-        <div class="feat-item"><div class="feat-icon">⭐</div><strong>Real reviews</strong>From verified clients only</div>
+        <div class="feat-item"><div class="feat-icon"></div><strong>Real reviews</strong>From verified clients only</div>
       </div>
     </div>
 
     <!-- Browse grid -->
     <div class="section-bar">
       <h2>Cleaners near you</h2>
-      <a onclick="showToast('Viewing all Hamilton cleaners')">See all →</a>
+      <a onclick="showToast('Viewing all Hamilton cleaners')">See all</a>
     </div>
 
     <div class="filter-bar">
@@ -105,7 +105,7 @@
       <button class="filter-pill" data-filter="Regular">Regular</button>
       <button class="filter-pill" data-filter="Move In/Out">Move In/Out</button>
       <button class="filter-pill" data-filter="Post Reno">Post Reno</button>
-      <button class="filter-pill" data-filter="Top Rated">⭐ Top Rated</button>
+      <button class="filter-pill" data-filter="Top Rated">Top Rated</button>
       <select class="sort-select" id="sortSelect" aria-label="Sort cleaners">
         <option value="recommended">Sort: Recommended</option>
         <option value="price-asc">Price: Low to High</option>
@@ -122,7 +122,7 @@
   <!-- ── CLEANER PROFILE PAGE ───────────────────────────────────────────── -->
   <div id="page-profile" class="page">
 
-    <a class="back-btn" href="#/" data-route>← Back to browse</a>
+    <a class="back-btn" href="#/" data-route>Back to browse</a>
 
     <div id="profileContent">
       <!-- Profile hero -->
@@ -194,15 +194,15 @@
               Identity verified
             </div>
             <div class="trust-item-row">
-              <div class="trust-icon" style="background:var(--sage-light)">🔍</div>
+              <div class="trust-icon" style="background:var(--sage-light)">BC</div>
               Background checked
             </div>
             <div class="trust-item-row">
-              <div class="trust-icon" style="background:var(--sage-light)">📋</div>
+              <div class="trust-icon" style="background:var(--sage-light)">OK</div>
               Sparkl-approved cleaner
             </div>
             <div class="trust-item-row">
-              <div class="trust-icon" style="background:var(--sage-light)">💬</div>
+              <div class="trust-icon" style="background:var(--sage-light)">24h</div>
               Avg response: under 2 hrs
             </div>
           </div>
@@ -216,7 +216,7 @@
           <div class="sidebar-widget" id="repeatWidget" style="display:none">
             <h4>You've booked before ✓</h4>
             <p style="font-size:13px;color:var(--bark-mid);margin-bottom:12px">Book the same cleaner again in seconds.</p>
-            <button class="book-btn-main" id="rebookBtn" style="font-size:14px;padding:10px">Rebook quickly →</button>
+            <button class="book-btn-main" id="rebookBtn" style="font-size:14px;padding:10px">Rebook quickly</button>
           </div>
         </div>
       </div>
@@ -251,7 +251,7 @@
         <div class="booking-list">
           <div class="booking-list-header">
             <h3>Your bookings</h3>
-            <a href="#/" data-route style="color:var(--sage)">Book another cleaner →</a>
+            <a href="#/" data-route style="color:var(--sage)">Book another cleaner</a>
           </div>
           <div id="bookingsList"></div>
         </div>
@@ -402,7 +402,7 @@
         </form><!-- /applyForm -->
 
         <button class="submit-btn-full" id="applySubmitBtn" type="button">
-          Submit Application →
+          Submit Application
         </button>
         <p style="text-align:center;font-size:12px;color:var(--bark-light);margin-top:1rem">
           Applications reviewed within 2 business days. We're selective — quality over quantity.
@@ -412,7 +412,7 @@
       <!-- Success state (shown after submission) -->
       <div id="onboardSuccess" style="display:none">
         <div class="success-state">
-          <div class="success-icon">🌿</div>
+          <div class="success-icon">Received</div>
           <h3>Application received!</h3>
           <p>Thank you for applying. Our team will review your application and reach out within 2 business days. We're building something special — and we're glad you want to be part of it.</p>
         </div>

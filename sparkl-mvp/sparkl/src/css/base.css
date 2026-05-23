@@ -2,28 +2,28 @@
    All design decisions live here. Change a variable once, update everywhere.
    ─────────────────────────────────────────────────────────────────────────── */
 :root {
-  --cream: #FAF8F3;
-  --sand: #F0EBE0;
-  --bark: #2C2318;
-  --bark-mid: #5C4F3A;
-  --bark-light: #9C8E79;
-  --sage: #4A7C59;
-  --sage-light: #E8F2EC;
-  --sage-mid: #7FAD8E;
-  --terracotta: #C0533A;
-  --terra-light: #F5EAE7;
-  --gold: #C9963A;
-  --gold-light: #FBF3E4;
+  --cream: #F7F5F1;
+  --sand: #ECE7DF;
+  --bark: #27231F;
+  --bark-mid: #5D5750;
+  --bark-light: #8C857C;
+  --sage: #58685D;
+  --sage-light: #EEF1ED;
+  --sage-mid: #A9B4AA;
+  --terracotta: #8F6456;
+  --terra-light: #F1E9E5;
+  --gold: #92794C;
+  --gold-light: #F1ECE1;
   --white: #FFFFFF;
-  --border: #E4DDD0;
+  --border: #DED8D0;
 
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
   --radius-pill: 100px;
 
-  --shadow-card: 0 2px 8px rgba(44, 35, 24, 0.06);
-  --shadow-card-hover: 0 12px 32px rgba(44, 35, 24, 0.1);
+  --shadow-card: 0 1px 2px rgba(39, 35, 31, 0.04);
+  --shadow-card-hover: 0 10px 28px rgba(39, 35, 31, 0.08);
 
   --font-display: 'DM Serif Display', serif;
   --font-body: 'DM Sans', sans-serif;
@@ -46,8 +46,9 @@ body {
   background: var(--cream);
   color: var(--bark);
   font-size: 15px;
-  line-height: 1.6;
+  line-height: 1.5;
   min-height: 100vh;
+  letter-spacing: 0;
 }
 
 img {

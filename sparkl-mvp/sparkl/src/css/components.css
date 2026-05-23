@@ -1,8 +1,8 @@
 /* ─── NAVIGATION ───────────────────────────────────────────────────────────── */
 nav {
-  background: var(--white);
+  background: rgba(255, 255, 255, 0.96);
   border-bottom: 1px solid var(--border);
-  padding: 0 2rem;
+  padding: 0 3rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -14,13 +14,12 @@ nav {
 
 .logo {
   font-family: var(--font-display);
-  font-size: 22px;
-  color: var(--sage);
-  letter-spacing: -0.5px;
+  font-size: 24px;
+  color: var(--bark);
   cursor: pointer;
 }
 
-.logo span { color: var(--terracotta); }
+.logo span { color: var(--sage); }
 
 .nav-links {
   display: flex;
@@ -29,7 +28,7 @@ nav {
 }
 
 .nav-link {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--bark-mid);
   cursor: pointer;
   padding: 6px 0;
@@ -40,21 +39,21 @@ nav {
 .nav-link:hover,
 .nav-link.active {
   color: var(--bark);
-  border-bottom-color: var(--terracotta);
+  border-bottom-color: var(--bark);
 }
 
 .nav-cta {
-  background: var(--sage);
-  color: white;
-  border: none;
-  padding: 8px 20px;
-  border-radius: var(--radius-pill);
-  font-size: 14px;
+  background: transparent;
+  color: var(--bark);
+  border: 1px solid var(--border);
+  padding: 8px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
   font-weight: 500;
-  transition: background 0.2s;
+  transition: border-color 0.2s, background 0.2s;
 }
 
-.nav-cta:hover { background: var(--bark); }
+.nav-cta:hover { background: var(--cream); border-color: var(--bark-light); }
 
 @media (max-width: 600px) {
   nav { padding: 0 1rem; }
@@ -77,8 +76,8 @@ nav {
 
 /* ─── FILTER BAR ───────────────────────────────────────────────────────────── */
 .filter-bar {
-  padding: 1.25rem 2rem;
-  background: var(--white);
+  padding: 1.5rem 3rem;
+  background: var(--cream);
   border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
@@ -89,8 +88,8 @@ nav {
 .filter-pill {
   border: 1px solid var(--border);
   background: transparent;
-  padding: 7px 16px;
-  border-radius: var(--radius-pill);
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
   font-size: 13px;
   color: var(--bark-mid);
   transition: all 0.2s;
@@ -98,14 +97,14 @@ nav {
 }
 
 .filter-pill:hover {
-  border-color: var(--sage);
-  color: var(--sage);
+  border-color: var(--bark-light);
+  color: var(--bark);
 }
 
 .filter-pill.active {
-  background: var(--sage);
+  background: var(--bark);
   color: white;
-  border-color: var(--sage);
+  border-color: var(--bark);
 }
 
 .sort-select {
@@ -113,7 +112,7 @@ nav {
   border: 1px solid var(--border);
   background: transparent;
   padding: 7px 16px;
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-sm);
   font-size: 13px;
   color: var(--bark-mid);
   outline: none;
@@ -121,78 +120,92 @@ nav {
 
 /* ─── CLEANER CARD ─────────────────────────────────────────────────────────── */
 .browse-grid {
-  padding: 2rem;
+  padding: 2.5rem 3rem 4rem;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
-  max-width: 1200px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2rem 1.5rem;
+  max-width: 1240px;
   margin: 0 auto;
 }
 
 .cleaner-card {
-  background: var(--white);
-  border-radius: var(--radius-lg);
+  background: transparent;
+  border-radius: 0;
   overflow: hidden;
-  border: 1px solid var(--border);
+  border: none;
   cursor: pointer;
-  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  transition: transform 0.25s;
   position: relative;
-  box-shadow: var(--shadow-card);
+  box-shadow: none;
 }
 
 .cleaner-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-card-hover);
-  border-color: var(--sage-mid);
+  transform: translateY(-2px);
+  box-shadow: none;
+  border-color: transparent;
 }
 
 .card-image {
-  height: 200px;
+  aspect-ratio: 4 / 3;
+  height: auto;
   position: relative;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: var(--sand);
+  border-radius: var(--radius-md);
 }
 
-.avatar-bg { font-size: 72px; }
+.card-image img,
+.profile-avatar img,
+.booking-ava img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.avatar-bg { display: none; }
 
 .card-badge {
   position: absolute;
   top: 12px;
   left: 12px;
   background: var(--white);
-  border-radius: var(--radius-pill);
-  padding: 4px 12px;
-  font-size: 11px;
+  border-radius: var(--radius-sm);
+  padding: 5px 10px;
+  font-size: 10px;
   font-weight: 600;
+  color: var(--bark);
+  box-shadow: 0 1px 8px rgba(39, 35, 31, 0.08);
 }
 
-.badge-verified { color: var(--sage); }
-.badge-top { color: var(--gold); }
+.badge-verified,
+.badge-top { color: var(--bark); }
 
 .card-fav {
   position: absolute;
   top: 12px;
   right: 12px;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.86);
   border: none;
   border-radius: 50%;
-  width: 32px;
-  height: 32px;
+  min-width: 48px;
+  width: auto;
+  height: 30px;
+  padding: 0 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  font-size: 11px;
+  font-weight: 600;
   transition: all 0.2s;
 }
 
 .card-fav:hover {
   background: white;
-  transform: scale(1.1);
+  transform: none;
 }
 
-.card-body { padding: 1rem 1.25rem; }
+.card-body { padding: 0.9rem 0 0; }
 
 .card-header {
   display: flex;
@@ -201,23 +214,23 @@ nav {
   margin-bottom: 6px;
 }
 
-.card-name { font-weight: 600; font-size: 15px; }
+.card-name { font-weight: 500; font-size: 15px; color: var(--bark); }
 
 .card-rating {
   display: flex;
   align-items: center;
   gap: 4px;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 400;
   white-space: nowrap;
 }
 
-.star { color: var(--gold); }
+.star { color: var(--bark); }
 
 .card-sub {
   font-size: 13px;
   color: var(--bark-light);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .card-tags {
@@ -228,38 +241,45 @@ nav {
 }
 
 .tag {
-  background: var(--sand);
+  background: transparent;
   color: var(--bark-mid);
   font-size: 11px;
-  padding: 3px 10px;
-  border-radius: var(--radius-pill);
-  font-weight: 500;
+  padding: 0;
+  border-radius: 0;
+  font-weight: 400;
+}
+
+.tag + .tag::before {
+  content: '/';
+  color: var(--bark-light);
+  margin-right: 6px;
 }
 
 .card-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-top: 1px solid var(--border);
-  padding-top: 12px;
+  border-top: none;
+  padding-top: 2px;
 }
 
 .card-price { font-size: 16px; font-weight: 600; }
 .card-price span { font-size: 13px; font-weight: 400; color: var(--bark-light); }
 
 .card-btn {
-  background: var(--terra-light);
-  color: var(--terracotta);
-  border: none;
-  padding: 7px 16px;
-  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--bark);
+  border: 1px solid var(--border);
+  padding: 7px 14px;
+  border-radius: var(--radius-sm);
   font-size: 13px;
   font-weight: 600;
   transition: all 0.2s;
 }
 
 .card-btn:hover {
-  background: var(--terracotta);
+  background: var(--bark);
+  border-color: var(--bark);
   color: white;
 }
 
@@ -297,9 +317,9 @@ nav {
   width: 100%;
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  padding: 10px 14px;
+  padding: 12px 14px;
   font-size: 14px;
-  background: var(--cream);
+  background: var(--white);
   color: var(--bark);
   outline: none;
   transition: border-color 0.2s;
@@ -308,7 +328,7 @@ nav {
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-  border-color: var(--sage);
+  border-color: var(--bark);
 }
 
 .form-group textarea {
@@ -361,7 +381,7 @@ nav {
 
 .modal {
   background: var(--white);
-  border-radius: 20px;
+  border-radius: var(--radius-lg);
   max-width: 540px;
   width: 100%;
   max-height: 90vh;
@@ -391,7 +411,7 @@ nav {
 .step-dot {
   width: 28px;
   height: 28px;
-  border-radius: 50%;
+  border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -402,7 +422,7 @@ nav {
 }
 
 .step-dot.done { background: var(--sage); color: white; border-color: var(--sage); }
-.step-dot.current { background: var(--terracotta); color: white; border-color: var(--terracotta); }
+.step-dot.current { background: var(--bark); color: white; border-color: var(--bark); }
 .step-dot.future { background: transparent; color: var(--bark-light); border-color: var(--border); }
 
 .step-line { flex: 1; height: 1px; background: var(--border); }
@@ -418,7 +438,7 @@ nav {
   background: transparent;
   border: 1px solid var(--border);
   padding: 11px;
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-sm);
   font-size: 14px;
   font-weight: 500;
   color: var(--bark-mid);
@@ -429,17 +449,17 @@ nav {
 
 .modal-btn-pri {
   flex: 2;
-  background: var(--sage);
+  background: var(--bark);
   color: white;
   border: none;
   padding: 11px;
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-sm);
   font-size: 14px;
   font-weight: 600;
   transition: background 0.2s;
 }
 
-.modal-btn-pri:hover { background: var(--bark); }
+.modal-btn-pri:hover { background: var(--sage); }
 .modal-btn-pri:disabled { background: var(--bark-light); cursor: not-allowed; }
 
 /* ─── TOAST ────────────────────────────────────────────────────────────────── */
@@ -451,7 +471,7 @@ nav {
   background: var(--bark);
   color: white;
   padding: 12px 24px;
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-sm);
   font-size: 14px;
   font-weight: 500;
   z-index: 300;
@@ -509,7 +529,7 @@ nav {
   font-size: 11px;
   font-weight: 600;
   padding: 4px 12px;
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-sm);
   white-space: nowrap;
 }
 
