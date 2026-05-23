@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sparkl — Hamilton's Curated Cleaning Marketplace</title>
+  <meta name="description" content="Browse vetted, independent cleaners in Hamilton, Ontario. Choose your person. Book with confidence. Same cleaner every time." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/src/css/base.css" />
+  <link rel="stylesheet" href="/src/css/components.css" />
+  <link rel="stylesheet" href="/src/css/pages.css" />
+
+  <!-- Favicon placeholder -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>" />
+</head>
+<body>
+
+  <!-- ── NAVIGATION ─────────────────────────────────────────────────────── -->
+  <nav>
+    <div class="logo" data-page="home">Sparkl<span>.</span></div>
+    <div class="nav-links">
+      <span class="nav-link active" data-page="home">Browse</span>
+      <span class="nav-link" data-page="dashboard">My Bookings</span>
+      <span class="nav-link" data-page="apply">Apply as Cleaner</span>
+    </div>
+    <button class="nav-cta">Hamilton, ON</button>
+  </nav>
+
+  <!-- ── HOME / BROWSE PAGE ─────────────────────────────────────────────── -->
+  <div id="page-home" class="page active">
+
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-eyebrow">Hamilton's trusted cleaning marketplace</div>
+      <h1>Your <em>same cleaner,</em><br>every single time.</h1>
+      <p>Browse verified independent cleaners. Choose your fit. Book with confidence — not just once, but again and again.</p>
+      <div class="hero-search">
+        <input type="text" placeholder="Neighbourhood, e.g. Westdale, Durand…" aria-label="Search by neighbourhood" />
+        <button type="button">Find cleaners</button>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item-line"><span class="trust-dot"></span>All cleaners vetted &amp; approved</div>
+        <div class="trust-item-line"><span class="trust-dot"></span>You choose your person</div>
+        <div class="trust-item-line"><span class="trust-dot"></span>Same cleaner guaranteed</div>
+      </div>
+    </div>
+
+    <!-- How it works -->
+    <div class="how-section">
+      <div class="how-inner">
+        <div class="section-eyebrow">How it works</div>
+        <div class="section-heading">Three steps to consistency</div>
+        <p class="section-sub">Built for people who value trust over convenience and relationships over transactions.</p>
+        <div class="how-grid">
+          <div class="how-card">
+            <div class="how-num">01</div>
+            <div class="how-title">Browse profiles</div>
+            <div class="how-desc">Explore curated cleaners in your neighbourhood. Read their bio, services, and real reviews.</div>
+          </div>
+          <div class="how-card">
+            <div class="how-num">02</div>
+            <div class="how-title">Request your cleaner</div>
+            <div class="how-desc">Pick the right fit and send a booking request. They accept and you're confirmed.</div>
+          </div>
+          <div class="how-card">
+            <div class="how-num">03</div>
+            <div class="how-title">Build a relationship</div>
+            <div class="how-desc">Rebook the same person in two taps. They know your home. You know what to expect.</div>
+          </div>
+          <div class="how-card">
+            <div class="how-num">04</div>
+            <div class="how-title">Protected by Sparkl</div>
+            <div class="how-desc">Quality checks, dispute support, and platform accountability — never go off-platform.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature strip -->
+    <div class="feature-strip">
+      <div class="feature-inner">
+        <div class="feat-item"><div class="feat-icon">✓</div><strong>Curated cleaners only</strong>Application-only, not open to all</div>
+        <div class="feat-item"><div class="feat-icon">🔒</div><strong>Background checks</strong>All cleaners vetted before listing</div>
+        <div class="feat-item"><div class="feat-icon">🌴</div><strong>Culturally aligned</strong>Caribbean &amp; familiar cleaning styles</div>
+        <div class="feat-item"><div class="feat-icon">♻</div><strong>Repeat-first model</strong>Same-cleaner convenience built in</div>
+        <div class="feat-item"><div class="feat-icon">⭐</div><strong>Real reviews</strong>From verified clients only</div>
+      </div>
+    </div>
+
+    <!-- Browse grid -->
+    <div class="section-bar">
+      <h2>Cleaners near you</h2>
+      <a onclick="showToast('Viewing all Hamilton cleaners')">See all →</a>
+    </div>
+
+    <div class="filter-bar">
+      <button class="filter-pill active" data-filter="All">All</button>
+      <button class="filter-pill" data-filter="Deep Clean">Deep Clean</button>
+      <button class="filter-pill" data-filter="Regular">Regular</button>
+      <button class="filter-pill" data-filter="Move In/Out">Move In/Out</button>
+      <button class="filter-pill" data-filter="Post Reno">Post Reno</button>
+      <button class="filter-pill" data-filter="Top Rated">⭐ Top Rated</button>
+      <select class="sort-select" id="sortSelect" aria-label="Sort cleaners">
+        <option value="recommended">Sort: Recommended</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="rating">Highest Rated</option>
+      </select>
+    </div>
+
+    <div class="browse-grid" id="cleanerGrid" role="list" aria-label="Available cleaners"></div>
+
+  </div><!-- /page-home -->
+
+
+  <!-- ── CLEANER PROFILE PAGE ───────────────────────────────────────────── -->
+  <div id="page-profile" class="page">
+
+    <a class="back-btn" href="#/" data-route>← Back to browse</a>
+
+    <div id="profileContent">
+      <!-- Profile hero -->
+      <div class="profile-hero">
+        <div class="profile-inner">
+          <div class="profile-avatar" id="profAvatar"></div>
+          <div class="profile-info">
+            <h2 id="profName"></h2>
+            <div class="profile-meta" id="profMeta"></div>
+            <div class="profile-badges" id="profBadges"></div>
+            <div class="profile-stats" id="profStats"></div>
+          </div>
+          <div class="book-panel">
+            <div class="book-price-big" id="profPriceBig"></div>
+            <div class="form-group">
+              <label>Service type</label>
+              <select id="bookService">
+                <option>Regular clean</option>
+                <option>Deep clean</option>
+                <option>Move in/out</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Preferred date</label>
+              <input type="date" id="bookDate" />
+            </div>
+            <div class="form-group">
+              <label>Home size</label>
+              <select id="bookSize">
+                <option>Studio / 1 bed</option>
+                <option>2 bedrooms</option>
+                <option>3 bedrooms</option>
+                <option>4+ bedrooms</option>
+              </select>
+            </div>
+            <button class="book-btn-main" id="openBookingBtn">Request Booking</button>
+            <div class="book-note">Free cancellation up to 24 hrs before</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile body -->
+      <div class="profile-body">
+        <div>
+          <div class="profile-section">
+            <h3>About</h3>
+            <p id="profBio" style="font-size:14px;color:var(--bark-mid);line-height:1.8"></p>
+          </div>
+          <div class="profile-section">
+            <h3>Services &amp; pricing</h3>
+            <div id="profServices"></div>
+          </div>
+          <div class="profile-section">
+            <h3>Availability</h3>
+            <div class="avail-grid" id="profAvail"></div>
+          </div>
+          <div class="profile-section">
+            <h3>Reviews</h3>
+            <div id="profReviews"></div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div>
+          <div class="sidebar-widget">
+            <h4>Trust &amp; Safety</h4>
+            <div class="trust-item-row">
+              <div class="trust-icon" style="background:var(--sage-light)">✓</div>
+              Identity verified
+            </div>
+            <div class="trust-item-row">
+              <div class="trust-icon" style="background:var(--sage-light)">🔍</div>
+              Background checked
+            </div>
+            <div class="trust-item-row">
+              <div class="trust-icon" style="background:var(--sage-light)">📋</div>
+              Sparkl-approved cleaner
+            </div>
+            <div class="trust-item-row">
+              <div class="trust-icon" style="background:var(--sage-light)">💬</div>
+              Avg response: under 2 hrs
+            </div>
+          </div>
+
+          <div class="sidebar-widget">
+            <h4>Languages</h4>
+            <p id="profLangs" style="font-size:13px;color:var(--bark-mid)"></p>
+          </div>
+
+          <!-- Shown only to returning clients (Phase 2 — auth-gated) -->
+          <div class="sidebar-widget" id="repeatWidget" style="display:none">
+            <h4>You've booked before ✓</h4>
+            <p style="font-size:13px;color:var(--bark-mid);margin-bottom:12px">Book the same cleaner again in seconds.</p>
+            <button class="book-btn-main" id="rebookBtn" style="font-size:14px;padding:10px">Rebook quickly →</button>
+          </div>
+        </div>
+      </div>
+    </div><!-- /profileContent -->
+
+  </div><!-- /page-profile -->
+
+
+  <!-- ── CLIENT DASHBOARD ───────────────────────────────────────────────── -->
+  <div id="page-dashboard" class="page">
+    <div class="dash-grid">
+      <div class="dash-header">
+        <h2>My Bookings</h2>
+        <p>Enter your email to view your booking history.</p>
+      </div>
+
+      <!-- Phase 1: email lookup (replaced by auth in Phase 2) -->
+      <div id="dashLookup">
+        <div style="max-width:420px">
+          <div class="form-group">
+            <label>Email address used when booking</label>
+            <input name="email" type="email" placeholder="you@email.com" id="dashEmailInput" />
+          </div>
+          <button class="book-btn-main" id="dashLookupBtn" style="width:auto;padding:11px 28px;font-size:14px">
+            View my bookings
+          </button>
+        </div>
+      </div>
+
+      <!-- Bookings list (shown after lookup) -->
+      <div id="dashBookings" style="display:none">
+        <div class="booking-list">
+          <div class="booking-list-header">
+            <h3>Your bookings</h3>
+            <a href="#/" data-route style="color:var(--sage)">Book another cleaner →</a>
+          </div>
+          <div id="bookingsList"></div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /page-dashboard -->
+
+
+  <!-- ── CLEANER APPLICATION ────────────────────────────────────────────── -->
+  <div id="page-apply" class="page">
+    <div class="onboard-wrap">
+      <div class="onboard-intro">
+        <h2>Join Sparkl as a cleaner</h2>
+        <p>We're selective — and that's the point. Our clients choose you based on your profile and stay for the relationship. Apply below and our team will review your application within 2 business days.</p>
+      </div>
+
+      <div id="onboardForm">
+        <form id="applyForm" novalidate>
+
+          <!-- Personal info -->
+          <div class="onboard-card">
+            <div class="section-title">Personal info</div>
+            <div class="form-group">
+              <label>Full name</label>
+              <input name="full_name" type="text" placeholder="Your full legal name" autocomplete="name" />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Email</label>
+                <input name="email" type="email" placeholder="you@email.com" autocomplete="email" />
+              </div>
+              <div class="form-group">
+                <label>Phone</label>
+                <input name="phone" type="tel" placeholder="(905) 000-0000" autocomplete="tel" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Neighbourhood in Hamilton</label>
+              <select name="neighbourhood">
+                <option value="">Select your area…</option>
+                <option>Westdale</option>
+                <option>Durand</option>
+                <option>Kirkendall</option>
+                <option>Corktown</option>
+                <option>Stipley</option>
+                <option>Crown Point</option>
+                <option>Ancaster</option>
+                <option>Dundas</option>
+                <option>Stoney Creek</option>
+                <option>Other Hamilton area</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Languages spoken</label>
+              <input name="languages" type="text" placeholder="e.g. English, French, Patois" />
+            </div>
+          </div>
+
+          <!-- Services & experience -->
+          <div class="onboard-card">
+            <div class="section-title">Services &amp; experience</div>
+            <div class="form-group">
+              <label>Years of cleaning experience</label>
+              <select name="years_experience">
+                <option value="">Select…</option>
+                <option>Less than 1 year</option>
+                <option>1–2 years</option>
+                <option>3–5 years</option>
+                <option>5+ years</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Services you offer</label>
+              <div class="checkbox-group">
+                <label class="checkbox-item">
+                  <input type="checkbox" name="services" value="Regular" />
+                  Regular / maintenance cleaning
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="services" value="Deep Clean" />
+                  Deep cleaning
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="services" value="Move In/Out" />
+                  Move in / move out
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="services" value="Post Reno" />
+                  Post-renovation cleaning
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="services" value="Laundry (add-on)" />
+                  Laundry &amp; ironing (add-on)
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="services" value="Oven/Fridge (add-on)" />
+                  Oven / fridge deep clean (add-on)
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Your hourly rate (CAD $)</label>
+              <input name="hourly_rate" type="text" placeholder="e.g. 30" />
+            </div>
+            <div class="form-group">
+              <label>Your bio <span style="font-weight:400;color:var(--bark-light)">(shown on your profile — min. 50 characters)</span></label>
+              <textarea name="bio" rows="4" placeholder="Tell clients a bit about yourself, your experience, and your cleaning philosophy…"></textarea>
+            </div>
+          </div>
+
+          <!-- Availability -->
+          <div class="onboard-card">
+            <div class="section-title">Availability</div>
+            <div class="checkbox-group">
+              <label class="checkbox-item"><input type="checkbox" name="available_days" value="Mon" /> Monday</label>
+              <label class="checkbox-item"><input type="checkbox" name="available_days" value="Tue" /> Tuesday</label>
+              <label class="checkbox-item"><input type="checkbox" name="available_days" value="Wed" /> Wednesday</label>
+              <label class="checkbox-item"><input type="checkbox" name="available_days" value="Thu" /> Thursday</label>
+              <label class="checkbox-item"><input type="checkbox" name="available_days" value="Fri" /> Friday</label>
+              <label class="checkbox-item"><input type="checkbox" name="available_days" value="Sat" /> Saturday</label>
+              <label class="checkbox-item"><input type="checkbox" name="available_days" value="Sun" /> Sunday</label>
+            </div>
+          </div>
+
+          <!-- Agreement -->
+          <div class="onboard-card">
+            <div class="section-title">Agreement</div>
+            <div class="checkbox-group">
+              <label class="checkbox-item">
+                <input type="checkbox" name="agreed_ic_terms" />
+                I understand I am an independent contractor, not an employee of Sparkl
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" name="agreed_background_check" />
+                I consent to a background verification check
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" name="agreed_platform_terms" />
+                I agree to Sparkl's <a href="#/terms" data-route style="color:var(--sage)">cleaner terms &amp; platform policies</a>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" name="agreed_no_off_platform" />
+                I will not solicit clients to book off-platform
+              </label>
+            </div>
+          </div>
+
+        </form><!-- /applyForm -->
+
+        <button class="submit-btn-full" id="applySubmitBtn" type="button">
+          Submit Application →
+        </button>
+        <p style="text-align:center;font-size:12px;color:var(--bark-light);margin-top:1rem">
+          Applications reviewed within 2 business days. We're selective — quality over quantity.
+        </p>
+      </div><!-- /onboardForm -->
+
+      <!-- Success state (shown after submission) -->
+      <div id="onboardSuccess" style="display:none">
+        <div class="success-state">
+          <div class="success-icon">🌿</div>
+          <h3>Application received!</h3>
+          <p>Thank you for applying. Our team will review your application and reach out within 2 business days. We're building something special — and we're glad you want to be part of it.</p>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /page-apply -->
+
+
+  <!-- ── LEGAL: TERMS OF SERVICE ────────────────────────────────────────── -->
+  <div id="page-terms" class="page">
+    <div class="legal-page">
+      <h1>Terms of Service</h1>
+      <p class="updated">Last updated: January 2025</p>
+
+      <h2>1. Platform role</h2>
+      <p>Sparkl is a marketplace platform that connects clients with independent cleaning professionals in Hamilton, Ontario. Sparkl is not a cleaning company and does not employ cleaners. All cleaning services are provided by independent contractors.</p>
+
+      <h2>2. Independent contractor relationship</h2>
+      <p>Cleaners listed on Sparkl are self-employed independent contractors. They set their own rates, manage their own schedules, and are responsible for their own tax obligations. Sparkl facilitates discovery and booking but is not a party to the service agreement between cleaner and client.</p>
+
+      <h2>3. Booking requests</h2>
+      <p>Submitting a booking request does not guarantee a confirmed booking. Cleaners may accept or decline requests. Payment is collected only after a booking is confirmed by the cleaner.</p>
+
+      <h2>4. Platform fee</h2>
+      <p>Sparkl charges a service fee of 10–15% on each confirmed booking. This fee covers platform maintenance, trust and safety programs, and client support.</p>
+
+      <h2>5. Cancellation</h2>
+      <p>Clients may cancel a confirmed booking without penalty up to 24 hours before the scheduled start time. Late cancellations may incur a fee at the cleaner's discretion.</p>
+
+      <h2>6. Off-platform arrangements</h2>
+      <p>Arranging bookings outside of Sparkl voids all platform protections including dispute resolution, insurance coverage, and cleaner accountability measures. Both clients and cleaners agree not to transact off-platform.</p>
+
+      <h2>7. Contact</h2>
+      <p>Questions about these terms: <a href="mailto:hello@sparkl.ca" style="color:var(--sage)">hello@sparkl.ca</a></p>
+    </div>
+  </div><!-- /page-terms -->
+
+
+  <!-- ── LEGAL: PRIVACY POLICY ──────────────────────────────────────────── -->
+  <div id="page-privacy" class="page">
+    <div class="legal-page">
+      <h1>Privacy Policy</h1>
+      <p class="updated">Last updated: January 2025</p>
+
+      <h2>1. What we collect</h2>
+      <p>When you submit a booking request or cleaner application, we collect: your name, email address, phone number, and the details of your request. We do not sell this information to third parties.</p>
+
+      <h2>2. How we use it</h2>
+      <p>We use your information to facilitate bookings, send confirmation emails, and improve the platform. Cleaner profiles (name, bio, neighbourhood, services) are publicly visible on the platform.</p>
+
+      <h2>3. Data storage</h2>
+      <p>Your data is stored securely using Supabase, hosted in Canada. We retain booking records for up to 3 years for dispute resolution purposes.</p>
+
+      <h2>4. Your rights</h2>
+      <p>You may request access to, correction of, or deletion of your personal data at any time by emailing <a href="mailto:privacy@sparkl.ca" style="color:var(--sage)">privacy@sparkl.ca</a>.</p>
+
+      <h2>5. Cookies</h2>
+      <p>We use minimal session cookies required for platform functionality. We do not use tracking or advertising cookies.</p>
+    </div>
+  </div><!-- /page-privacy -->
+
+
+  <!-- ── LEGAL: TRUST & SAFETY ──────────────────────────────────────────── -->
+  <div id="page-trust" class="page">
+    <div class="legal-page">
+      <h1>Trust &amp; Safety</h1>
+      <p class="updated">Last updated: January 2025</p>
+
+      <h2>Cleaner vetting</h2>
+      <p>Every cleaner on Sparkl has completed an application process and been manually reviewed by our team before their profile is made public. We verify identity and conduct background checks where consented.</p>
+
+      <h2>Quality standards</h2>
+      <p>Cleaners must maintain a minimum average rating to remain listed. Profiles with consistent poor reviews or client complaints are suspended and reviewed.</p>
+
+      <h2>Dispute resolution</h2>
+      <p>If a cleaning does not meet expectations, contact us within 48 hours. We will work with both parties to reach a fair resolution, which may include a re-clean or partial refund.</p>
+
+      <h2>Off-platform warning</h2>
+      <p>We strongly advise against arranging bookings outside of Sparkl. Off-platform bookings are not covered by our dispute resolution process, and there is no accountability if something goes wrong.</p>
+
+      <h2>Report a concern</h2>
+      <p>To report a cleaner or a safety concern: <a href="mailto:safety@sparkl.ca" style="color:var(--sage)">safety@sparkl.ca</a></p>
+    </div>
+  </div><!-- /page-trust -->
+
+
+  <!-- ── BOOKING MODAL (global, used by profile page) ──────────────────── -->
+  <div class="modal-overlay" id="bookingModal" role="dialog" aria-modal="true" aria-label="Request booking">
+    <div class="modal">
+      <div class="step-indicator" id="stepIndicator"></div>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- ── TOAST ──────────────────────────────────────────────────────────── -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- ── APP ENTRY POINT ────────────────────────────────────────────────── -->
+  <script type="module" src="/src/main.js"></script>
+
+</body>
+</html>
