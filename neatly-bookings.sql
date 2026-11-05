@@ -6,7 +6,8 @@ alter table public.booking_requests
   alter column client_phone drop not null,
   alter column preferred_date drop not null,
   alter column preferred_time drop not null,
-  alter column home_size drop not null,
+  add column if not exists client_user_id uuid references auth.users(id) on delete set null,
+  add column if not exists admin_notes text,
   add column if not exists property_type text,
   add column if not exists frequency text,
   add column if not exists country text,
@@ -30,7 +31,7 @@ create policy "Clients submit their own requests"
     and (cleaner_id is null or exists (
       select 1 from public.cleaners
       where cleaners.id = booking_requests.cleaner_id
-        and cleaners.status = 'approved' and cleaners.is_listed
+        and to_jsonb(cleaners)->>'approved' = 'true'
     ))
   );
 
