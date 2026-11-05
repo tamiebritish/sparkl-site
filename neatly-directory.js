@@ -31,6 +31,10 @@ function card(profile) {
   details.append(element('summary', 'View profile'), element('p', profile.bio));
   if (profile.availability) details.append(element('p', 'Availability: ' + profile.availability));
   node.append(heading, element('p', profile.location), element('p', profile.services.join(' · ')), element('p', rate), details);
+  const request = element('a', 'Request this Cleaning Specialist');
+  request.href = './?specialist=' + encodeURIComponent(profile.id || JSON.stringify([profile.name, profile.location])) + '#request';
+  request.className = 'text-link';
+  node.append(request);
   return node;
 }
 
