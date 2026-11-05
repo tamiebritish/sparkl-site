@@ -37,14 +37,14 @@ async function loadHistory(version) {
   }
 }
 
-function updateAccount(session) {
+function updateAccount(session, clearRequest = false) {
   const version = ++generation;
   signIn.hidden = Boolean(session);
   signOut.hidden = !session;
   accountStatus.textContent = session ? 'Signed in as ' + session.user.email : 'Sign in to save or view your bookings.';
   if (request) {
     request.hidden = !session;
-    if (!session) {
+    if (!session && clearRequest) {
       request.reset();
       request.querySelector('#booking-preference').dispatchEvent(new Event('change'));
       request.querySelector('.status').textContent = '';
@@ -64,7 +64,7 @@ signIn.addEventListener('submit', async event => {
   try {
     const {error} = await db.auth.signInWithOtp({
       email: new FormData(signIn).get('email').trim(),
-      options: {emailRedirectTo: window.location.href}
+      options: {emailRedirectTo: window.location.origin + window.location.pathname + window.location.search}
     });
     accountStatus.textContent = error ? 'Could not send the sign-in link. Please try again.' : 'Check your email for your sign-in link.';
   } finally {
@@ -127,6 +127,6 @@ request?.addEventListener('submit', async event => {
 
 db.auth.onAuthStateChange((event, session) => {
   if (event === 'INITIAL_SESSION' || event === 'SIGNED_IN' || event === 'SIGNED_OUT') {
-    setTimeout(() => updateAccount(session), 0);
+    setTimeout(() => updateAccount(session, event === 'SIGNED_OUT'), 0);
   }
 });
