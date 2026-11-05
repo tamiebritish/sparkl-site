@@ -19,7 +19,13 @@
     <div>
       <p class="kicker">For cleaning professionals</p>
       <h2 id="apply-heading">Apply to join Neatly</h2>
-      <p class="intro">Tell us where you work and what services you offer.</p>
+      <p class="intro">Grow your cleaning business with Neatly. Tell us where you work and what you do best.</p>
+      <ul>
+        <li>Build repeat relationships with clients who request you again.</li>
+        <li>Share your availability and choose which requests you accept.</li>
+        <li>Neatly sets service rates and shares the applicable rate before you accept a job.</li>
+      </ul>
+      <p class="note">Neatly reviews every application before a profile can appear in the directory.</p>
     </div>
     <form data-subject="Cleaning Specialist application">
       <div class="fields">
@@ -34,7 +40,23 @@
         <label>City, town or community<input name="City, town or community" autocomplete="address-level2" required maxlength="80"></label>
         <label>Other areas served (optional)<input name="Other areas served" maxlength="120"></label>
       </div></fieldset>
-      <div class="fields"><label class="wide">Experience and availability<textarea name="Experience and availability" required maxlength="350" placeholder="Tell us about the properties you clean and when you’re available."></textarea></label></div>
+      <fieldset>
+        <legend>Experience and specialties</legend>
+        <div class="fields">
+          <label>Years of cleaning experience<input name="Years of cleaning experience" type="number" min="0" max="80" step="1" required></label>
+          <label>Availability<input name="Availability" maxlength="100" placeholder="e.g. weekdays, mornings" required></label>
+          <label class="wide">Cleaning specialties (optional)<input name="Cleaning specialties" maxlength="120" placeholder="e.g. deep cleaning, offices, move-out cleaning"></label>
+          <label class="wide">Tell us about your work<textarea name="About your work" required maxlength="300" placeholder="Describe the spaces you clean and what clients can expect from you."></textarea></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Equipment, insurance and references</legend>
+        <div class="fields">
+          <label>Do you have your own supplies and equipment?<select name="Own supplies and equipment" required><option value="">Choose one</option><option>Yes</option><option>Some</option><option>No</option></select></label>
+          <label>Liability insurance<select name="Liability insurance" required><option value="">Choose one</option><option>Currently insured</option><option>Willing to obtain insurance</option><option>Neither at present</option></select></label>
+          <label>Can you provide references if asked?<select name="References available" required><option value="">Choose one</option><option>Yes</option><option>No</option></select></label>
+        </div>
+      </fieldset>
       <button class="button" type="submit">Prepare application email</button>
       <p class="note">Your email app opens with your details. Send the message there to complete your application.</p>
       <p class="status" role="status"></p>
