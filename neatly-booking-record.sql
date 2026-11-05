@@ -69,7 +69,7 @@ grant select, insert, update, delete on public.booking_service_addresses to serv
 
 revoke select, update on public.booking_requests from public, anon, authenticated;
 -- Table-level REVOKE does not remove previously granted column privileges.
-do $
+do $booking_grants$
 declare booking_columns text;
 begin
   select string_agg(quote_ident(attname), ', ' order by attnum) into booking_columns
@@ -78,7 +78,7 @@ begin
 
   execute format('revoke select (%s), update (%s) on public.booking_requests from public, anon, authenticated',
     booking_columns, booking_columns);
-end $;
+end $booking_grants$;
 
 grant select (id, cleaner_id, created_at, preferred_date, service_type, status,
   parish, neighbourhood, scheduled_at, specialist_response, currency,
