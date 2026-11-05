@@ -68,6 +68,18 @@ revoke all on public.booking_service_addresses from public, anon, authenticated;
 grant select, insert, update, delete on public.booking_service_addresses to service_role;
 
 revoke select, update on public.booking_requests from public, anon, authenticated;
+-- Table-level REVOKE does not remove previously granted column privileges.
+do $
+declare booking_columns text;
+begin
+  select string_agg(quote_ident(attname), ', ' order by attnum) into booking_columns
+  from pg_attribute
+  where attrelid = 'public.booking_requests'::regclass and attnum > 0 and not attisdropped;
+
+  execute format('revoke select (%s), update (%s) on public.booking_requests from public, anon, authenticated',
+    booking_columns, booking_columns);
+end $;
+
 grant select (id, cleaner_id, created_at, preferred_date, service_type, status,
   parish, neighbourhood, scheduled_at, specialist_response, currency,
   service_subtotal_minor, neatly_fee_minor, customer_total_minor, payment_status, paid_at)
@@ -81,6 +93,14 @@ create policy "Neatly booking intake boundary"
   with check (
     status = 'pending' and admin_notes is null
     and ((select auth.uid()) is not distinct from client_user_id)
+    and ((select auth.uid()) is null or (
+      client_email = (select auth.jwt() ->> 'email')
+      and (cleaner_id is null or exists (
+        select 1 from public.cleaners
+        where cleaners.id = booking_requests.cleaner_id
+          and to_jsonb(cleaners)->>'approved' = 'true'
+      ))
+    ))
     and scheduled_at is null
     and specialist_response = 'pending' and specialist_responded_at is null
     and currency = 'JMD' and num_nonnulls(service_subtotal_minor, neatly_fee_minor,
