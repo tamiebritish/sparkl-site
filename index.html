@@ -19,7 +19,7 @@
     .brand span{color:#58824a}
     .nav-links,.actions{display:flex;align-items:center;gap:1rem 1.5rem;flex-wrap:wrap}
     .nav-links{font-size:.9rem;font-weight:650}
-    .hero{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(2rem,6vw,6rem);align-items:stretch;padding-block:clamp(3rem,8vw,7rem)}
+    .hero{padding-block:clamp(3rem,8vw,7rem)}
     .kicker{font-weight:750;text-transform:uppercase;letter-spacing:.12em;font-size:.72rem;color:var(--muted);margin:0 0 1rem}
     h1,h2,.display{font-family:Georgia,serif;font-weight:400;line-height:1.03;letter-spacing:-.045em;margin:0}
     h1{font-size:clamp(3.1rem,6.6vw,6.1rem)}
@@ -30,10 +30,6 @@
     .button{display:inline-block;background:var(--green);color:white;padding:.75rem 1.15rem;border:1px solid var(--green);border-radius:5px;font:inherit;font-weight:700;text-decoration:none;cursor:pointer}
     .button:hover{background:#285442}
     .text-link{font-weight:700;text-underline-offset:.3em}
-    .market{background:var(--green);color:white;padding:clamp(1.75rem,4vw,3rem);display:flex;flex-direction:column;justify-content:space-between;min-height:290px}
-    .market .kicker{color:var(--lime)}
-    .market .display{font-size:clamp(3rem,6vw,5.5rem);color:var(--lime);margin-bottom:1rem}
-    .market p:last-child{margin:0;max-width:27ch;color:#e3ece5}
     .services{border-block:1px solid var(--line);padding-block:2rem 2.5rem}
     .service-list{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
     .service-list article{border-top:1px solid var(--line);padding-top:.65rem}
@@ -55,7 +51,7 @@
     footer{background:var(--green);color:white}
     footer p{margin:0}
     :focus-visible{outline:3px solid #638844;outline-offset:3px}
-    @media(max-width:720px){.wrap{width:calc(100% - 2rem)}.hero,.intake{grid-template-columns:1fr}.market{min-height:230px}}
+    @media(max-width:720px){.wrap{width:calc(100% - 2rem)}.intake{grid-template-columns:1fr}}
     @media(max-width:420px){.fields,.service-list{grid-template-columns:1fr}}
   </style>
 </head>
@@ -74,10 +70,6 @@
       <p class="intro">Find the right cleaner for your home, office or business. Tell us what you need and where, and we’ll follow up about availability.</p>
       <div class="actions"><a class="button" href="#request">Request cleaning</a><a class="text-link" href="#apply">Apply as a cleaner</a></div>
     </div>
-    <aside class="market" aria-label="Launch area">
-      <p class="kicker">Our first market</p>
-      <div><p class="display">Jamaica</p><p>Requests for other locations help us plan our rollout across the Caribbean and North America.</p></div>
-    </aside>
   </section>
 
   <section id="services" class="services" aria-label="Cleaning services">
