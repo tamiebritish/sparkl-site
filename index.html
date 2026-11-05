@@ -11,7 +11,7 @@
 <header>
   <nav class="wrap" aria-label="Main navigation">
     <a class="brand" href="./" aria-label="Neatly home">Neatly<span>.</span></a>
-    <div class="nav-links"><a href="./" aria-current="page">Home</a><a href="cleaners.html">Find Cleaning Specialists</a><a href="services.html">Services</a><a href="apply.html">Apply as a Cleaning Specialist</a><a href="#request">Request cleaning</a></div>
+    <div class="nav-links"><a href="./" aria-current="page">Home</a><a href="cleaners.html">Find Cleaning Specialists</a><a href="services.html">Services</a><a href="bookings.html">My Bookings</a><a href="apply.html">Apply as a Cleaning Specialist</a><a href="#request">Request cleaning</a></div>
   </nav>
 </header>
 <main>
@@ -31,7 +31,16 @@
       <h2 id="request-heading">Request cleaning</h2>
       <p class="intro">Share your location and the type of cleaning you need. Availability and pricing are confirmed separately.</p>
     </div>
-    <form data-subject="Cleaning request">
+    <div>
+<div id="booking-account">
+  <p id="account-status" role="status">Checking your sign-in…</p>
+  <form id="booking-signin" hidden>
+    <label>Email for your booking account<input type="email" name="email" autocomplete="email" required></label>
+    <button class="button" type="submit">Email me a sign-in link</button>
+  </form>
+  <button type="button" id="booking-signout" hidden>Sign out</button>
+</div>
+    <form id="booking-request" hidden>
       <fieldset>
         <legend>How would you like to choose a Cleaning Specialist?</legend>
         <label>Booking preference
@@ -49,7 +58,7 @@
       </fieldset>
       <div class="fields">
         <label>Full name<input name="Full name" autocomplete="name" required maxlength="100"></label>
-        <label>Email<input type="email" name="Email" autocomplete="email" required maxlength="150"></label>
+        
         <label>Phone (optional)<input type="tel" name="Phone" autocomplete="tel" maxlength="30"></label>
         <label>Preferred date (optional)<input type="date" name="Preferred date"></label>
         <label>Property type<select name="Property type" required><option value="">Choose one</option><option>Home</option><option>Office</option><option>Retail or other commercial space</option></select></label>
@@ -62,14 +71,16 @@
         <label>City, town or community<input name="City, town or community" placeholder="e.g. Half Way Tree" autocomplete="address-level2" required maxlength="80"></label>
       </div></fieldset>
       <div class="fields"><label class="wide">Cleaning details (optional)<textarea name="Cleaning details" maxlength="350" placeholder="Approximate size, rooms or areas to clean, and timing."></textarea></label></div>
-      <button class="button" type="submit">Prepare request email</button>
-      <p class="note">Your email app opens with your details. Send the message there to complete your request.</p>
+      <button class="button" type="submit">Submit cleaning request</button>
+      <p class="note">Your request is saved to My Bookings. Check there for updates.</p>
       <p class="status" role="status"></p>
     </form>
+    </div>
   </section>
 
 </main>
 <footer><div class="wrap"><a class="brand" href="./" aria-label="Neatly home">Neatly.</a><p>Cleaning made simple.</p></div></footer>
 <script src="neatly-intake.js" defer></script>
+<script type="module" src="neatly-bookings.js"></script>
 </body>
 </html>
