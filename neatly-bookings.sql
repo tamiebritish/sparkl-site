@@ -42,6 +42,9 @@ create policy "Clients read their own requests"
 revoke select on public.booking_requests from public, anon, authenticated;
 grant select (id, cleaner_id, created_at, preferred_date, service_type, status)
   on public.booking_requests to authenticated;
-grant insert on public.booking_requests to authenticated;
+revoke insert on public.booking_requests from authenticated;
+grant insert (client_user_id, client_email, client_name, client_phone, cleaner_id,
+  service_type, preferred_date, property_type, frequency, country, region, locality, notes)
+  on public.booking_requests to authenticated;
 
 commit;
