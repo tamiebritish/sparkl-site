@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Request residential or commercial cleaning in Jamaica, or apply to join Neatly as an independent cleaning professional.">
+  <title>My Bookings | Neatly</title>
+  <link rel="stylesheet" href="neatly.css">
+</head>
+<body>
+<header>
+  <nav class="wrap" aria-label="Main navigation">
+    <a class="brand" href="./" aria-label="Neatly home">Neatly<span>.</span></a>
+    <div class="nav-links"><a href="./">Home</a><a href="cleaners.html">Find Cleaning Specialists</a><a href="services.html">Services</a><a href="bookings.html" aria-current="page">My Bookings</a><a href="apply.html">Apply as a Cleaning Specialist</a><a href="./#request">Request cleaning</a></div>
+  </nav>
+</header>
+<main class="wrap" style="padding-block:3rem">
+  <h1>My Bookings</h1>
+  <p class="intro">See your requests and book the same Cleaning Specialist again.</p>
+  <div id="booking-account">
+  <p id="account-status" role="status">Checking your sign-in…</p>
+  <form id="booking-signin" hidden>
+    <label>Email for your booking account<input type="email" name="email" autocomplete="email" required></label>
+    <button class="button" type="submit">Email me a sign-in link</button>
+  </form>
+  <button type="button" id="booking-signout" hidden>Sign out</button>
+</div>
+  <section id="booking-history" hidden aria-label="Booking history"><p id="history-status" role="status"></p><ul id="booking-list"></ul></section>
+</main>
+<footer><div class="wrap"><a class="brand" href="./" aria-label="Neatly home">Neatly.</a><p>Cleaning made simple.</p></div></footer>
+<script type="module" src="neatly-bookings.js"></script>
+</body>
+</html>
