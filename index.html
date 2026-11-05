@@ -72,7 +72,9 @@
         <label>Full name<input name="Full name" autocomplete="name" required maxlength="100"></label>
         
         <label>Phone (optional)<input type="tel" name="Phone" autocomplete="tel" maxlength="30"></label>
-        <label>Preferred date (optional)<input type="date" name="Preferred date"></label>
+        <label>Preferred date<input type="date" name="Preferred date" required></label>
+        <label>Preferred time (Jamaica time)<input type="time" name="Preferred time" required></label>
+        <label>Estimated hours<input type="number" name="Hours" min="1" max="12" step="1" required></label>
         <label>Property type<select name="Property type" required><option value="">Choose one</option><option>Home</option><option>Office</option><option>Retail or other commercial space</option></select></label>
         <label>Service<select name="Service" required><option value="">Choose one</option><option>Standard cleaning</option><option>Deep cleaning</option><option>Move-in or move-out</option><option>Post-renovation cleaning</option><option>Other</option></select></label>
         <label>Frequency<select name="Frequency" required><option value="">Choose one</option><option>One-time</option><option>Weekly</option><option>Every two weeks</option><option>Monthly</option><option>To be discussed</option></select></label>
@@ -83,15 +85,19 @@
         <label>City, town or community<input name="City, town or community" placeholder="e.g. Half Way Tree" autocomplete="address-level2" required maxlength="80"></label>
       </div></fieldset>
       <div class="fields"><label class="wide">Cleaning details (optional)<textarea name="Cleaning details" maxlength="350" placeholder="Approximate size, rooms or areas to clean, and timing."></textarea></label></div>
-      <button class="button" type="submit">Submit cleaning request</button>
-      <p class="note">Your request is saved to My Bookings. Check there for updates.</p>
+      <label>Full service address<input name="Service address" autocomplete="street-address" maxlength="300" required></label>
+      <p class="note">Neatly uses the full address to arrange the service. Your assigned specialist sees it after payment is verified.</p>
+      <p id="request-quote" role="status"></p>
+      <button class="button" type="button" id="preview-quote">See price breakdown</button>
+      <button class="button" type="submit">Send request</button>
+      <p class="note">Payment comes after your specialist accepts. Check My Bookings for updates.</p>
       <p class="status" role="status"></p>
     </form>
     </div>
   </section>
 
 </main>
-<footer><div class="wrap"><a class="brand" href="./" aria-label="Neatly home">Neatly.</a><p>Cleaning made simple.</p></div></footer>
+<footer><div class="wrap"><a class="brand" href="./" aria-label="Neatly home">Neatly.</a><p>Cleaning made simple.</p></div><a href="specialist.html">Specialist dashboard</a></footer>
 <script src="neatly-intake.js" defer></script>
 <script type="module" src="neatly-bookings.js"></script>
 </body>
