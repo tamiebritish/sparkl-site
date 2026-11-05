@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Apply to join Neatly as an independent residential or commercial cleaning professional.">
+  <title>Apply to join Neatly | Cleaning Specialist application</title>
+  <link rel="stylesheet" href="neatly.css">
+</head>
+<body>
+<header>
+  <nav class="wrap" aria-label="Main navigation">
+    <a class="brand" href="./" aria-label="Neatly home">Neatly<span>.</span></a>
+    <div class="nav-links"><a href="./">Home</a><a href="cleaners.html">Find Cleaning Specialists</a><a href="services.html">Services</a><a href="apply.html" aria-current="page">Apply as a Cleaning Specialist</a><a href="./#request">Request cleaning</a></div>
+  </nav>
+</header>
+<main>
+  <section id="apply" class="intake wrap" aria-labelledby="apply-heading">
+    <div>
+      <p class="kicker">For cleaning professionals</p>
+      <h2 id="apply-heading">Apply to join Neatly</h2>
+      <p class="intro">Tell us where you work and what services you offer.</p>
+    </div>
+    <form data-subject="Cleaning Specialist application">
+      <div class="fields">
+        <label>Full name<input name="Full name" autocomplete="name" required maxlength="100"></label>
+        <label>Email<input type="email" name="Email" autocomplete="email" required maxlength="150"></label>
+        <label>Phone (include country code)<input type="tel" name="Phone" autocomplete="tel" required maxlength="30"></label>
+        <label>Services offered<select name="Services offered" required><option value="">Choose one</option><option>Residential cleaning</option><option>Commercial cleaning</option><option>Residential and commercial cleaning</option></select></label>
+      </div>
+      <fieldset><legend>Where you work</legend><div class="fields">
+        <label>Country or territory<input name="Country or territory" placeholder="e.g. Jamaica" autocomplete="country-name" required maxlength="80"></label>
+        <label>Parish, state or province<input name="Parish, state or province" placeholder="e.g. St. Andrew" autocomplete="address-level1" required maxlength="80"></label>
+        <label>City, town or community<input name="City, town or community" autocomplete="address-level2" required maxlength="80"></label>
+        <label>Other areas served (optional)<input name="Other areas served" maxlength="120"></label>
+      </div></fieldset>
+      <div class="fields"><label class="wide">Experience and availability<textarea name="Experience and availability" required maxlength="350" placeholder="Tell us about the properties you clean and when you’re available."></textarea></label></div>
+      <button class="button" type="submit">Prepare application email</button>
+      <p class="note">Your email app opens with your details. Send the message there to complete your application.</p>
+      <p class="status" role="status"></p>
+    </form>
+  </section>
+</main>
+<footer><div class="wrap"><a class="brand" href="./" aria-label="Neatly home">Neatly.</a><p>Cleaning made simple.</p></div></footer>
+<script src="neatly-intake.js" defer></script>
+</body>
+</html>
