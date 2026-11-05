@@ -1,5 +1,10 @@
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4/+esm';
+const signInStatus = document.querySelector('#account-status');
+const showSignInFailure = () => {
+  signInStatus.textContent = 'Sign-in is unavailable right now. Refresh the page to try again.';
+};
+const signInTimer = setTimeout(showSignInFailure, 8000);
 
+import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4/+esm').then(({createClient}) => {
 const db = createClient('https://idkefkgyiukoicdhrvms.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlka2Vma2d5aXVrb2ljZGhydm1zIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc0NTE0MDcsImV4cCI6MjA5MzAyNzQwN30.EsWqeDn1BSx6G_LitNP6SEgRBkh77MHC2kufhbFhBvE');
 const signIn = document.querySelector('#booking-signin');
 const signOut = document.querySelector('#booking-signout');
@@ -38,6 +43,7 @@ async function loadHistory(version) {
 }
 
 function updateAccount(session, clearRequest = false) {
+  clearTimeout(signInTimer);
   const version = ++generation;
   signIn.hidden = Boolean(session);
   signOut.hidden = !session;
@@ -129,4 +135,8 @@ db.auth.onAuthStateChange((event, session) => {
   if (event === 'INITIAL_SESSION' || event === 'SIGNED_IN' || event === 'SIGNED_OUT') {
     setTimeout(() => updateAccount(session, event === 'SIGNED_OUT'), 0);
   }
+});
+}).catch(() => {
+  clearTimeout(signInTimer);
+  showSignInFailure();
 });
