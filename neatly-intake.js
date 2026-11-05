@@ -27,7 +27,8 @@
     const panel = document.querySelector('#specialist-choice');
     const specialist = panel.querySelector('select');
     const status = document.querySelector('#specialist-status');
-    const requested = new URLSearchParams(window.location.search).get('specialist');
+    const params = new URLSearchParams(window.location.search);
+    const requested = params.get('specialist');
     const choose = 'Choose a Cleaning Specialist';
 
     function updateChoice() {
@@ -37,7 +38,10 @@
       specialist.required = choosing;
     }
 
-    if (requested && !preference.value) preference.value = choose;
+    if (!preference.value) {
+      if (requested) preference.value = choose;
+      else if (params.get('connect') === 'neatly') preference.value = 'Ask Neatly to connect me';
+    }
     preference.addEventListener('change', updateChoice);
     updateChoice();
 
