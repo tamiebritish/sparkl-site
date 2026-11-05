@@ -5,61 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Request residential or commercial cleaning in Jamaica, or apply to join Neatly as an independent cleaning professional.">
   <title>Neatly | Cleaning Made Simple</title>
-  <style>
-    :root{color-scheme:light;--ink:#182c23;--muted:#506257;--paper:#faf9f4;--line:#d8dfd5;--green:#193d30;--lime:#dfec9f}
-    *{box-sizing:border-box}
-    html{scroll-padding-top:1rem}
-    body{margin:0;background:var(--paper);color:var(--ink);font:1rem/1.55 system-ui,sans-serif}
-    a{color:inherit}
-    .wrap{width:min(1100px,calc(100% - 3rem));margin-inline:auto}
-    header{border-bottom:1px solid var(--line)}
-    nav,footer .wrap{display:flex;align-items:center;justify-content:space-between;gap:1.25rem;flex-wrap:wrap;padding-block:1rem}
-    nav a{text-decoration:none}
-    .brand{font-size:1.85rem;font-weight:800;letter-spacing:-.08em}
-    .brand span{color:#58824a}
-    .nav-links,.actions{display:flex;align-items:center;gap:1rem 1.5rem;flex-wrap:wrap}
-    .nav-links{font-size:.9rem;font-weight:650}
-    .hero{padding-block:clamp(3rem,8vw,7rem)}
-    .kicker{font-weight:750;text-transform:uppercase;letter-spacing:.12em;font-size:.72rem;color:var(--muted);margin:0 0 1rem}
-    h1,h2,.display{font-family:Georgia,serif;font-weight:400;line-height:1.03;letter-spacing:-.045em;margin:0}
-    h1{font-size:clamp(3.1rem,6.6vw,6.1rem)}
-    h2{font-size:clamp(2.2rem,4.6vw,4rem)}
-    h3{font-size:1.15rem;margin:.65rem 0 .4rem}
-    p{margin:0 0 1rem}
-    .intro{max-width:34rem;color:var(--muted);margin:1.4rem 0 1.8rem;font-size:1.1rem}
-    .button{display:inline-block;background:var(--green);color:white;padding:.75rem 1.15rem;border:1px solid var(--green);border-radius:5px;font:inherit;font-weight:700;text-decoration:none;cursor:pointer}
-    .button:hover{background:#285442}
-    .text-link{font-weight:700;text-underline-offset:.3em}
-    .services{border-block:1px solid var(--line);padding-block:2rem 2.5rem}
-    .service-list{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
-    .service-list article{border-top:1px solid var(--line);padding-top:.65rem}
-    .service-list p,.note{color:var(--muted)}
-    .intake{padding-block:clamp(3rem,6vw,5rem);display:grid;grid-template-columns:1fr 1.4fr;gap:2rem 4rem;align-items:start}
-    .intake+.intake{border-top:1px solid var(--line)}
-    .intake h2{margin-bottom:1rem}
-    form{background:#fff;border:1px solid var(--line);padding:clamp(1rem,3vw,2rem);border-radius:8px}
-    fieldset{border:0;margin:0 0 1rem;padding:0;min-width:0}
-    legend{font-weight:750;margin-bottom:.45rem}
-    .fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-bottom:1rem}
-    label{display:grid;gap:.3rem;font-size:.9rem;font-weight:650}
-    input,select,textarea{width:100%;min-width:0;border:1px solid #aebbb1;border-radius:4px;background:white;color:var(--ink);padding:.6rem;font:inherit}
-    textarea{min-height:6rem;resize:vertical}
-    .wide{grid-column:1/-1}
-    .note{font-size:.9rem;margin:.75rem 0 0}
-    .status{margin:.75rem 0 0}
-    .status:empty{display:none}
-    footer{background:var(--green);color:white}
-    footer p{margin:0}
-    :focus-visible{outline:3px solid #638844;outline-offset:3px}
-    @media(max-width:720px){.wrap{width:calc(100% - 2rem)}.intake{grid-template-columns:1fr}}
-    @media(max-width:420px){.fields,.service-list{grid-template-columns:1fr}}
-  </style>
+  <link rel="stylesheet" href="neatly.css">
 </head>
 <body>
 <header>
   <nav class="wrap" aria-label="Main navigation">
-    <a class="brand" href="#" aria-label="Neatly home">Neatly<span>.</span></a>
-    <div class="nav-links"><a href="#services">Services</a><a href="#apply">Apply as a cleaner</a><a href="#request">Request cleaning</a></div>
+    <a class="brand" href="./" aria-label="Neatly home">Neatly<span>.</span></a>
+    <div class="nav-links"><a href="#services">Services</a><a href="apply.html">Apply as a cleaner</a><a href="#request">Request cleaning</a></div>
   </nav>
 </header>
 <main>
@@ -68,7 +20,7 @@
       <p class="kicker">Residential &amp; commercial cleaning</p>
       <h1 id="headline">Cleaning<br>made simple.</h1>
       <p class="intro">Find the right cleaner for your home, office or business. Tell us what you need and where, and we’ll follow up about availability.</p>
-      <div class="actions"><a class="button" href="#request">Request cleaning</a><a class="text-link" href="#apply">Apply as a cleaner</a></div>
+      <div class="actions"><a class="button" href="#request">Request cleaning</a><a class="text-link" href="apply.html">Apply as a cleaner</a></div>
     </div>
   </section>
 
@@ -110,54 +62,8 @@
     </form>
   </section>
 
-  <section id="apply" class="intake wrap" aria-labelledby="apply-heading">
-    <div>
-      <p class="kicker">For cleaning professionals</p>
-      <h2 id="apply-heading">Apply to join Neatly</h2>
-      <p class="intro">Tell us where you work and what services you offer.</p>
-    </div>
-    <form data-subject="Cleaner application">
-      <div class="fields">
-        <label>Full name<input name="Full name" autocomplete="name" required maxlength="100"></label>
-        <label>Email<input type="email" name="Email" autocomplete="email" required maxlength="150"></label>
-        <label>Phone (include country code)<input type="tel" name="Phone" autocomplete="tel" required maxlength="30"></label>
-        <label>Services offered<select name="Services offered" required><option value="">Choose one</option><option>Residential cleaning</option><option>Commercial cleaning</option><option>Residential and commercial cleaning</option></select></label>
-      </div>
-      <fieldset><legend>Where you work</legend><div class="fields">
-        <label>Country or territory<input name="Country or territory" placeholder="e.g. Jamaica" autocomplete="country-name" required maxlength="80"></label>
-        <label>Parish, state or province<input name="Parish, state or province" placeholder="e.g. St. Andrew" autocomplete="address-level1" required maxlength="80"></label>
-        <label>City, town or community<input name="City, town or community" autocomplete="address-level2" required maxlength="80"></label>
-        <label>Other areas served (optional)<input name="Other areas served" maxlength="120"></label>
-      </div></fieldset>
-      <div class="fields"><label class="wide">Experience and availability<textarea name="Experience and availability" required maxlength="350" placeholder="Tell us about the properties you clean and when you’re available."></textarea></label></div>
-      <button class="button" type="submit">Prepare application email</button>
-      <p class="note">Your email app opens with your details. Send the message there to complete your application.</p>
-      <p class="status" role="status"></p>
-    </form>
-  </section>
 </main>
-<footer><div class="wrap"><a class="brand" href="#" aria-label="Neatly home">Neatly.</a><p>Cleaning made simple.</p></div></footer>
-<script>
-  const intakeEmail = 'sales@neatlyja.com';
-
-  for (const form of document.querySelectorAll('form[data-subject]')) {
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const lines = [];
-      for (const [label, value] of new FormData(form)) {
-        const detail = value.trim();
-        if (detail) lines.push(label + ': ' + detail);
-      }
-      const subject = encodeURIComponent('Neatly | ' + form.dataset.subject);
-      const body = encodeURIComponent(lines.join('\r\n'));
-      const status = form.querySelector('.status');
-      const emailLink = document.createElement('a');
-      emailLink.href = 'mailto:' + intakeEmail;
-      emailLink.textContent = intakeEmail;
-      status.replaceChildren('If your email app did not open, you can email your details to ', emailLink, '.');
-      window.location.href = 'mailto:' + intakeEmail + '?subject=' + subject + '&body=' + body;
-    });
-  }
-</script>
+<footer><div class="wrap"><a class="brand" href="./" aria-label="Neatly home">Neatly.</a><p>Cleaning made simple.</p></div></footer>
+<script src="neatly-intake.js" defer></script>
 </body>
 </html>
