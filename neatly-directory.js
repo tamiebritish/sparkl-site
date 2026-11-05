@@ -52,7 +52,7 @@ async function load() {
   if (!response.ok) throw new Error('Directory unavailable');
   const profiles = (await response.json()).filter(p => p.approved === true);
   if (!profiles.length) {
-    status.textContent = 'No cleaner profiles are listed yet. Approved profiles will appear here.';
+    status.textContent = 'No Cleaning Specialist profiles are listed yet. Approved profiles will appear here.';
     return;
   }
   for (const service of [...new Set(profiles.flatMap(p => p.services))].sort()) {
@@ -62,7 +62,7 @@ async function load() {
   }
   function render() {
     const matches = findProfiles(profiles, locationFilter.value, serviceFilter.value, sortFilter.value);
-    status.textContent = matches.length ? matches.length + (matches.length === 1 ? ' cleaner found' : ' cleaners found') : 'No cleaners match these filters.';
+    status.textContent = matches.length ? matches.length + (matches.length === 1 ? ' Cleaning Specialist found' : ' Cleaning Specialists found') : 'No Cleaning Specialists match these filters.';
     list.replaceChildren(...matches.map(card));
   }
   filters.hidden = false;
@@ -73,5 +73,5 @@ async function load() {
 }
 
 load().catch(() => {
-  status.textContent = 'The cleaner directory is unavailable right now. Please try again later.';
+  status.textContent = 'The Cleaning Specialist directory is unavailable right now. Please try again later.';
 });
