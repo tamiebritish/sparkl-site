@@ -11,6 +11,7 @@ const signOut = document.querySelector('#booking-signout');
 const accountStatus = document.querySelector('#account-status');
 const request = document.querySelector('#booking-request');
 const history = document.querySelector('#booking-history');
+const documents = document.querySelector('#specialist-documents');
 let generation = 0;
 
 async function loadHistory(version) {
@@ -47,13 +48,21 @@ function updateAccount(session, clearRequest = false) {
   const version = ++generation;
   signIn.hidden = Boolean(session);
   signOut.hidden = !session;
-  accountStatus.textContent = session ? 'Signed in as ' + session.user.email : 'Sign in to save or view your bookings.';
+  accountStatus.textContent = session ? 'Signed in as ' + session.user.email : (documents ? 'Sign in to upload supporting documents.' : 'Sign in to save or view your bookings.');
   if (request) {
     request.hidden = !session;
     if (!session && clearRequest) {
       request.reset();
       request.querySelector('#booking-preference').dispatchEvent(new Event('change'));
       request.querySelector('.status').textContent = '';
+    }
+  }
+  if (documents) {
+    documents.hidden = !session;
+    document.querySelector('#document-reference').value = session?.user.id || '';
+    if (!session) {
+      documents.reset();
+      documents.querySelector('.status').textContent = '';
     }
   }
   if (history) {
@@ -75,6 +84,58 @@ signIn.addEventListener('submit', async event => {
     accountStatus.textContent = error ? 'Could not send the sign-in link. Please try again.' : 'Check your email for your sign-in link.';
   } finally {
     button.disabled = false;
+  }
+});
+
+documents?.addEventListener('submit', async event => {
+  event.preventDefault();
+  const status = documents.querySelector('.status');
+  const button = documents.querySelector('button[type="submit"]');
+  const inputs = Array.from(documents.querySelectorAll('input[type="file"]')).filter(input => input.files.length);
+  if (!inputs.length) {
+    status.textContent = 'Choose at least one document to upload.';
+    return;
+  }
+  const extensions = {'application/pdf':'pdf', 'image/jpeg':'jpg', 'image/png':'png'};
+  const invalid = inputs.find(input => {
+    const file = input.files[0];
+    return !extensions[file.type] || (input.name === 'passport-photo' && file.type === 'application/pdf') ||
+      !file.size || file.size > 5 * 1024 * 1024;
+  });
+  if (invalid) {
+    status.textContent = 'Check the file type and size for ' + invalid.labels[0].textContent + '.';
+    return;
+  }
+  button.disabled = true;
+  inputs.forEach(input => { input.disabled = true; });
+  signOut.disabled = true;
+  status.textContent = 'Uploading documents…';
+  try {
+    const {data: {session}, error: authError} = await db.auth.getSession();
+    if (authError || !session) throw new Error('Sign-in expired');
+    const failed = [];
+    for (const input of inputs) {
+      const file = input.files[0];
+      const path = session.user.id + '/' + input.name + '/' + crypto.randomUUID() + '.' + extensions[file.type];
+      try {
+        const {error} = await db.storage.from('neatly-specialist-documents').upload(path, file, {
+          contentType: file.type, upsert: false
+        });
+        if (error) throw error;
+        input.value = '';
+      } catch {
+        failed.push(input.labels[0].textContent.trim());
+      }
+    }
+    status.textContent = failed.length
+      ? 'Could not upload: ' + failed.join(', ') + '. Retry the selected files.'
+      : 'Documents uploaded. Send your application email to complete your application.';
+  } catch {
+    status.textContent = 'Upload unavailable. Sign in again and retry.';
+  } finally {
+    button.disabled = false;
+    signOut.disabled = false;
+    inputs.forEach(input => { input.disabled = false; });
   }
 });
 
