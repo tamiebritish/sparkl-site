@@ -1,0 +1,7 @@
+# Enable Neatly private bookings
+
+1. Run `neatly-bookings.sql` in the existing Supabase project's SQL Editor before deploying these pages. It keeps older requests without owners private and preserves the older anonymous intake for unclaimed requests.
+2. In Authentication → URL Configuration, set the Site URL to the Neatly production origin. Add the production and exact preview redirect URLs used for testing, including the homepage and `/bookings.html`. Enable email sign-in and verify delivery of the link.
+3. For each approved specialist, set the public directory entry's `id` to the matching UUID from Supabase `cleaners`. Both the directory entry and database cleaner must be approved and listed. Use Supabase Table Editor to assign a specialist to a connection request and to update its status.
+4. Test with two accounts. Create a specialist-specific request and a Neatly connection request. Verify account B cannot read account A's requests. Assign and confirm a specialist, then confirm Book again preselects that same UUID. Verify an unlisted specialist cannot receive a new request.
+5. Enable the updated site after successful testing. The public application form retains its email workflow. The booking form writes to Supabase, so Neatly should monitor the booking table. Requests created before the update are not assigned to accounts automatically.
