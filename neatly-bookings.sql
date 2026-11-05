@@ -40,6 +40,12 @@ create policy "Clients read their own requests"
   on public.booking_requests for select to authenticated
   using (client_user_id = (select auth.uid()));
 
+-- An older permissive policy cannot grant access across client accounts.
+drop policy if exists "Neatly booking ownership boundary" on public.booking_requests;
+create policy "Neatly booking ownership boundary"
+  on public.booking_requests as restrictive for select to anon, authenticated
+  using ((select auth.uid()) is not null and client_user_id = (select auth.uid()));
+
 revoke select on public.booking_requests from public, anon, authenticated;
 grant select (id, cleaner_id, created_at, preferred_date, service_type, status)
   on public.booking_requests to authenticated;
