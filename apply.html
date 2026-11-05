@@ -28,6 +28,7 @@
       <p class="note">Neatly reviews every application before a profile can appear in the directory.</p>
     </div>
     <form data-subject="Cleaning Specialist application">
+      <input type="hidden" name="Document reference" id="document-reference">
       <div class="fields">
         <label>Full name<input name="Full name" autocomplete="name" required maxlength="100"></label>
         <label>Email<input type="email" name="Email" autocomplete="email" required maxlength="150"></label>
@@ -57,13 +58,41 @@
           <label>Can you provide references if asked?<select name="References available" required><option value="">Choose one</option><option>Yes</option><option>No</option></select></label>
         </div>
       </fieldset>
+      <p><a href="#documents-heading">Upload supporting documents (optional)</a></p>
       <button class="button" type="submit">Prepare application email</button>
       <p class="note">Your email app opens with your details. Send the message there to complete your application.</p>
       <p class="status" role="status"></p>
     </form>
   </section>
+<section class="intake wrap" aria-labelledby="documents-heading">
+  <div>
+    <h2 id="documents-heading">Supporting documents</h2>
+    <p>Optional. Sign in to upload documents for Neatly’s application review. Uploads are private. Use the same email on your application so Neatly can match it to your documents.</p>
+  </div>
+  <div>
+    <p id="account-status" role="status"></p>
+    <form id="booking-signin" hidden>
+      <label>Email for your application<input type="email" name="email" autocomplete="email" required></label>
+      <button class="button" type="submit">Email me a sign-in link</button>
+    </form>
+    <button type="button" id="booking-signout" hidden>Sign out</button>
+    <form id="specialist-documents" hidden>
+      <div class="fields">
+        <label>Current police record<input type="file" name="police-record" accept="application/pdf,image/jpeg,image/png"></label>
+        <label>Passport-size photo<input type="file" name="passport-photo" accept="image/jpeg,image/png"></label>
+        <label>Government-issued ID<input type="file" name="id" accept="application/pdf,image/jpeg,image/png"></label>
+        <label>TRN document<input type="file" name="trn" accept="application/pdf,image/jpeg,image/png"></label>
+        <label>Proof of address<input type="file" name="proof-of-address" accept="application/pdf,image/jpeg,image/png"></label>
+      </div>
+      <p class="note">PDF, JPG or PNG. Photos must be JPG or PNG. Maximum 5 MB per file.</p>
+      <button class="button" type="submit">Upload selected documents</button>
+      <p class="status" role="status"></p>
+    </form>
+  </div>
+</section>
 </main>
 <footer><div class="wrap"><a class="brand" href="./" aria-label="Neatly home">Neatly.</a><p>Cleaning made simple.</p></div></footer>
 <script src="neatly-intake.js" defer></script>
+<script type="module" src="neatly-bookings.js"></script>
 </body>
 </html>
