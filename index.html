@@ -32,6 +32,21 @@
       <p class="intro">Share your location and the type of cleaning you need. Availability and pricing are confirmed separately.</p>
     </div>
     <form data-subject="Cleaning request">
+      <fieldset>
+        <legend>How would you like to choose a Cleaning Specialist?</legend>
+        <label>Booking preference
+          <select name="Booking preference" id="booking-preference" required>
+            <option value="">Choose an option</option>
+            <option value="Choose a Cleaning Specialist">I’ll choose a Cleaning Specialist</option>
+            <option value="Ask Neatly to connect me">I’d like Neatly to connect me</option>
+          </select>
+        </label>
+        <div id="specialist-choice" hidden>
+          <label>Cleaning Specialist<select name="Cleaning Specialist" disabled><option value="">Loading specialists…</option></select></label>
+          <p class="note" id="specialist-status" role="status"></p>
+          <a href="cleaners.html">Browse Cleaning Specialist profiles</a>
+        </div>
+      </fieldset>
       <div class="fields">
         <label>Full name<input name="Full name" autocomplete="name" required maxlength="100"></label>
         <label>Email<input type="email" name="Email" autocomplete="email" required maxlength="150"></label>
